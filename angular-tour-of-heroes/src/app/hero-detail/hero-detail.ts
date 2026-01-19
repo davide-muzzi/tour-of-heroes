@@ -11,5 +11,5 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './hero-detail.scss',
 })
 export class HeroDetail {
-  hero = input<Hero>();
+  hero = input.required<Hero>();
 }
