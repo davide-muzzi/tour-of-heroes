@@ -1,0 +1,34 @@
+h2 {
+  color: #fff;
+}
+
+.villains {
+  list-style: none;
+  padding: 0;
+}
+
+.villains li {
+  background: #1f2937;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge {
+  background: #0ea5e9;
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+button {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
