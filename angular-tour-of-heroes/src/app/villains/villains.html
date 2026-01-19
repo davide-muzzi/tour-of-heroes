@@ -9,9 +9,23 @@
 </div>
 
 <ul class="villains">
-  <li *ngFor="let villain of villains">
+  <li *ngFor="let villain of villains" (click)="select(villain)">
     <span class="badge">{{ villain.id }}</span>
-    {{ villain.name }}
-    <button class="delete" (click)="delete(villain)">x</button>
+
+    <ng-container *ngIf="selectedVillain as sv; else viewMode">
+      <input *ngIf="sv.id === villain.id" [(ngModel)]="sv.name" />
+    </ng-container>
+
+    <ng-template #viewMode>
+      {{ villain.name }}
+    </ng-template>
+
+    <div class="actions">
+      <button *ngIf="selectedVillain?.id === villain.id" (click)="save(); $event.stopPropagation()">
+        Save
+      </button>
+
+      <button class="delete" (click)="delete(villain); $event.stopPropagation()">x</button>
+    </div>
   </li>
 </ul>

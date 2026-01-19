@@ -23,6 +23,15 @@ export class VillainService {
     return of(villain);
   }
 
+  updateVillain(villain: Villain): Observable<Villain> {
+    const index = VILLAINS.findIndex((v) => v.id === villain.id);
+    if (index !== -1) {
+      VILLAINS[index] = villain;
+      this.messageService.add(`VillainService: updated villain id=${villain.id}`);
+    }
+    return of(villain);
+  }
+
   deleteVillain(id: number): Observable<void> {
     const index = VILLAINS.findIndex((v) => v.id === id);
     VILLAINS.splice(index, 1);

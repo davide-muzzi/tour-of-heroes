@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class VillainsComponent implements OnInit {
   villains: Villain[] = [];
+  selectedVillain?: Villain;
 
   constructor(private villainService: VillainService) {}
 
@@ -37,6 +38,19 @@ export class VillainsComponent implements OnInit {
         // 🔥 RE-FETCH instead of pushing manually
         this.getVillains();
       });
+  }
+
+  select(villain: Villain): void {
+    this.selectedVillain = { ...villain }; // clone to avoid instant mutation
+  }
+
+  save(): void {
+    if (!this.selectedVillain) return;
+
+    this.villainService.updateVillain(this.selectedVillain).subscribe(() => {
+      this.selectedVillain = undefined;
+      this.getVillains();
+    });
   }
 
   delete(villain: Villain): void {

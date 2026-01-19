@@ -33,3 +33,16 @@ button {
   border-radius: 6px;
   cursor: pointer;
 }
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
