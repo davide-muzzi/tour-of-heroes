@@ -1,33 +1,24 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// import { HEROES } from '../mock-heroes';
-import { HeroDetail } from '../hero-detail/hero-detail';
+import { HeroDetailComponent } from '../hero-detail/hero-detail';
 import { HeroService } from '../service/hero-service';
-import { MessageService } from '../service/message-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-heroes',
-  imports: [UpperCasePipe, FormsModule, HeroDetail],
+  imports: [UpperCasePipe, FormsModule, HeroDetailComponent, RouterLink],
   templateUrl: './heroes.html',
   styleUrl: './heroes.scss',
 })
-export class HeroesComponent {
-  selectedHero?: Hero;
-  heroes: Hero[] = [];
-
+export class HeroesComponent implements OnInit {
   private heroService = inject(HeroService);
-  private messageService = inject(MessageService);
+  heroes: Hero[] = [];
 
   ngOnInit(): void {
     this.getHeroes();
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 
   getHeroes(): void {
