@@ -3,10 +3,12 @@ import { Hero } from '../hero';
 import { UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HEROES } from '../mock-heroes';
+import { HeroDetail } from '../hero-detail/hero-detail';
 
 @Component({
+  standalone: true,
   selector: 'app-heroes',
-  imports: [UpperCasePipe, FormsModule],
+  imports: [UpperCasePipe, FormsModule, HeroDetail],
   templateUrl: './heroes.html',
   styleUrl: './heroes.scss',
 })
