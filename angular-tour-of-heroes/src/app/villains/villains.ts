@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Villain } from '../villain';
 import { VillainService } from '../service/villain-service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-villains',
   templateUrl: './villains.html',
   styleUrls: ['./villains.scss'],
+  imports: [CommonModule, FormsModule],
+  standalone: true,
 })
 export class VillainsComponent implements OnInit {
   villains: Villain[] = [];
@@ -26,14 +30,18 @@ export class VillainsComponent implements OnInit {
 
     this.villainService
       .addVillain({
-        id: Math.max(...this.villains.map((v) => v.id)) + 1,
+        id: this.villains.length ? Math.max(...this.villains.map((v) => v.id)) + 1 : 11,
         name,
       })
-      .subscribe((v) => this.villains.push(v));
+      .subscribe(() => {
+        // 🔥 RE-FETCH instead of pushing manually
+        this.getVillains();
+      });
   }
 
   delete(villain: Villain): void {
-    this.villains = this.villains.filter((v) => v !== villain);
-    this.villainService.deleteVillain(villain.id).subscribe();
+    this.villainService.deleteVillain(villain.id).subscribe(() => {
+      this.getVillains();
+    });
   }
 }
