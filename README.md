@@ -83,6 +83,10 @@ This project is:
 
 Not production-ready — intentionally.
 
+## 🔗 Related Project
+
+Related Angular version: https://github.com/davide-muzzi/tour-of-heroes-ionic
+
 ---
 
 Built with Angular · Standalone Components
